@@ -2,21 +2,14 @@ from flask import Flask, render_template, send_from_directory
 app = Flask(__name__)
 
 # ---- Endpoints for serving static assets ----
-@app.route('/js/<path:path>')
-def send_js(path):
-    return send_from_directory('static/js', path)
+@app.route('/bootstrap/<path:path>')
+def bootstrap_endpoint(path):
+    return send_from_directory('static/bootstrap', path)
 
-@app.route('/css/<path:path>')
-def send_css(path):
-    return send_from_directory('static/css', path)
+@app.route('/upload_assets/<path:path>')
+def upload_assets_endpoint(path):
+    return send_from_directory('static/upload_assets', path)
 
-@app.route('/img/<path:path>')
-def send_img(path):
-    return send_from_directory('static/img', path)
-
-@app.route('/font-awesome/<path:path>')
-def send_font_awesome(path):
-    return send_from_directory('static/font-awesome', path)
 # ---------------------------------------------
 
 @app.route('/')
