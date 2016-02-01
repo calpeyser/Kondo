@@ -120,7 +120,13 @@
     <script src="upload_assets/js/fileinput.min.js" type="text/javascript"></script>
 
     <!-- Initialize file upload -->
-    <script>$("#input-1").fileinput({'showUpload':false, 'previewFileType':'any', 'uploadUrl':'/analyze'});</script>
+    <script>$("#input-1").fileinput(
+        {
+            'showUpload':false, 
+            'previewFileType':'any', 
+            'uploadUrl':'/analyze',
+        }
+    );</script>
 
 </body>
 
