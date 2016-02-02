@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, request
+from flask import Flask, render_template, send_from_directory, request, Response
 import json, requests
 
 app = Flask(__name__)
@@ -26,11 +26,8 @@ def analyze():
 	params = json.dumps({'chorale': request.files['file_data'].read()})
 	r = requests.post('http://192.168.99.101:8080/check', params)
 
-	print r.json()
+	return json.dumps({"analysis": r.json()})
 
-	return json.dumps({
-		'initialPreview': '<p>%s</p>' % r.json().errors[0],
-	})
 
 if __name__ == '__main__':
     app.run()
