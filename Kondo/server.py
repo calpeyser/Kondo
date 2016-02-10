@@ -24,7 +24,7 @@ def index():
 @app.route('/analyze', methods=['POST'])
 def analyze():
 	params = json.dumps({'chorale': request.files['file_data'].read()})
-	r = requests.post('http://192.168.99.101:8080/check', params)
+	r = requests.post('http://104.196.14.72:8080/check', params)
 
 	return json.dumps({"analysis": r.json()})
 
