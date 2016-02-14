@@ -1,7 +1,10 @@
 from flask import Flask, render_template, send_from_directory, request, Response
-import json, requests
+import json, urllib2
+
+
 
 app = Flask(__name__)
+URL = 'http://104.196.14.72:8080/check'
 
 # ---- Endpoints for serving static assets ----
 @app.route('/bootstrap/<path:path>')
@@ -23,10 +26,13 @@ def index():
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
-	params = json.dumps({'chorale': request.files['file_data'].read()})
-	r = requests.post('http://104.196.14.72:8080/check', params)
+  values = {'chorale': request.files['file_data'].read()}
 
-	return json.dumps({"analysis": r.json()})
+  data = json.dumps(values)
+  jigglypuff_request = urllib2.Request(URL, data, {'Content-Type': 'application/json'})
+  response = urllib2.urlopen(jigglypuff_request)
+
+  return json.dumps({"analysis": response.read()})
 
 
 if __name__ == '__main__':
