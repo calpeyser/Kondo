@@ -25,6 +25,23 @@
     <!-- File Upload Assets -->
     <link href="upload_assets/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 
+    <!-- jQuery -->
+    <script src="bootstrap/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="bootstrap/js/jquery.easing.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="bootstrap/js/grayscale.js"></script>
+
+    <!-- Upload file assets -->
+    <script src="upload_assets/js/fileinput.min.js" type="text/javascript"></script>
+
+    <!-- Vexflow with musicXML support -->
+    <script src="vexflow/vexflow.musicxml.min.js"></script>
 
 </head>
 
@@ -77,6 +94,41 @@
         </div>
     </header>
 
+    <!-- Output Section -->
+       <script>
+        var VexDocument = null;
+        var VexFormatter = null;
+
+        $.ajax({
+          url: "misc/basic_chorale.xml",
+          success: function(data) {
+            var start = new Date().getTime(); // time execution
+
+            VexDocument = new Vex.Flow.Document(data);
+            //console.log(VexDocument);
+            var content = $(".content")[0];
+            if (VexDocument) {
+              VexFormatter = VexDocument.getFormatter();
+              VexFormatter.draw(content);
+            }
+            var elapsed = (new Date().getTime() - start)/1000;
+            var debouncedResize = null;
+            $(window).resize(function() {
+              if (! debouncedResize)
+                debouncedResize = setTimeout(function() {
+                  VexFormatter.draw(content);
+                  debouncedResize = null;
+                }, 500);
+            });
+          }
+        });
+      </script>
+   
+    <section id="output" class="container content-section text-center">
+    <div class="content" id="viewer" style="padding-bottom: 5pt;"></div>
+    <section>
+
+
     <!-- About Section -->
     <section id="about" class="container content-section text-center">
         <div class="row">
@@ -103,21 +155,6 @@
             </div>
         </div>
     </section>
-
-    <!-- jQuery -->
-    <script src="bootstrap/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="bootstrap/js/jquery.easing.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="bootstrap/js/grayscale.js"></script>
-
-    <!-- Upload file assets -->
-    <script src="upload_assets/js/fileinput.min.js" type="text/javascript"></script>
 
     <!-- Initialize file upload -->
     <script>

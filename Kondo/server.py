@@ -14,6 +14,14 @@ def bootstrap_endpoint(path):
 @app.route('/upload_assets/<path:path>')
 def upload_assets_endpoint(path):
     return send_from_directory('static/upload_assets', path)
+
+@app.route('/vexflow/<path:path>')
+def vexflow_endpoint(path):
+    return send_from_directory('static/vexflow', path)
+
+@app.route('/misc/<path:path>')
+def misc_endpoint(path):
+    return send_from_directory('static/misc', path)
 # ---------------------------------------------
 
 def html_from_errors(errors):
