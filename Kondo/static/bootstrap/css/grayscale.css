@@ -261,6 +261,11 @@ a:focus {
     padding-top: 100px;
 }
 
+.white-content-section {
+    padding-top: 100px;
+    background-color: #fff;
+}
+
 .download-section {
     width: 100%;
     padding: 50px 0;
