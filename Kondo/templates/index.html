@@ -96,7 +96,7 @@
     </header>
 
     <!-- Output Section -->   
-    <section id="output" class="container white-content-section text-center">
+    <section id="output" class="container white-content-section text-center" style="padding-top:0px">
         <div class="content" id="viewer" style="padding-bottom: 5pt;"></div>
     </section>
 
@@ -135,11 +135,15 @@
             'previewFileType':'any', 
             'uploadUrl':'/analyze',
     });
+
+    // Render chorale
     $('#input-1').on('fileuploaded', function(event, data, previewId, index) {
         var start = new Date().getTime(); // time execution
         analysis = JSON.parse(data.response["analysis"])
+        chorale = analysis["chorale"]
+        //alert(JSON.stringify(analysis["chorale"]))
 
-        VexDocument = new Vex.Flow.Document(data);
+        VexDocument = new Vex.Flow.Document(chorale);
         console.log(VexDocument);
         var content = $(".content")[0];
         if (VexDocument) {
