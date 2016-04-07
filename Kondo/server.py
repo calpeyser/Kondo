@@ -1,10 +1,8 @@
 from flask import Flask, render_template, send_from_directory, request, Response
 import json, urllib2
 
-
-
 app = Flask(__name__)
-URL = 'http://104.196.14.72:8080/check'
+URL = 'http://104.196.109.169:8080/check'
 
 # ---- Endpoints for serving static assets ----
 @app.route('/bootstrap/<path:path>')
@@ -41,7 +39,6 @@ def analyze():
   response = urllib2.urlopen(jigglypuff_request)
 
   return json.dumps({"analysis": response.read()})
-
 
 if __name__ == '__main__':
     app.run()
