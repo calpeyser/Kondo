@@ -174,7 +174,7 @@
         analysis = JSON.parse(data.response["analysis"])
         errors = analysis["errors"]
         var error_list = $('#error_list')
-        for (var i = 0; i < error_list.length; i++) {
+        for (var i = 0; i < errors.length; i++) {
             error_list.append("<li>" + errors[i] + "</li>")
         }
     });
