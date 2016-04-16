@@ -184,6 +184,7 @@
         analysis = JSON.parse(data.response["analysis"])
         errors = analysis["errors"]
         var error_list = $('#error_list')
+        $('#error_list').empty();
         for (var i = 0; i < errors.length; i++) {
             error_list.append("<li class='list-group-item'>" + errors[i] + "</li>")
         }
