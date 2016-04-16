@@ -144,8 +144,17 @@
             'uploadUrl':'/analyze',
     });
 
+    //hide chorale section
+    $( document ).ready(function() {
+        var output = $('#output')
+        output.css({"visibility":"hidden"});
+    });
+
+
     // Render chorale
     $('#input-1').on('fileuploaded', function(event, data, previewId, index) {
+        var output = $('#output')
+        output.css({"visibility":"visible"});
         var start = new Date().getTime(); // time execution
         analysis = JSON.parse(data.response["analysis"])
         chorale = analysis["chorale"]
