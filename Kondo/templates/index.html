@@ -104,7 +104,7 @@
 
     <!-- Errors Section -->
     <section id="errors" class="container text-center" style="padding-top:0px">
-        <ul id="error_list"> 
+        <ul id="error_list" class="list-group"> 
         </ul>
     </section>
 
@@ -169,13 +169,14 @@
         });
     });
 
+
     // List errors
     $('#input-1').on('fileuploaded', function(event, data, previewId, index) {
         analysis = JSON.parse(data.response["analysis"])
         errors = analysis["errors"]
         var error_list = $('#error_list')
         for (var i = 0; i < errors.length; i++) {
-            error_list.append("<li>" + errors[i] + "</li>")
+            error_list.append("<li class='list-group-item'>" + errors[i] + "</li>")
         }
     });
     </script>
